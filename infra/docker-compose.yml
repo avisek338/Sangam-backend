@@ -1,0 +1,49 @@
+version: '3.8'
+
+services:
+  postgres:
+    container_name: sangam_postgres
+    image: postgres:14
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: sangam_user
+      POSTGRES_PASSWORD: sangam_password
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./db-init:/docker-entrypoint-initdb.d
+    networks:
+      - sangam_network
+
+  mongodb:
+    container_name: sangam_mongodb
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_data:/data/db
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: sangam_user
+      MONGO_INITDB_ROOT_PASSWORD: sangam_password
+    networks:
+      - sangam_network
+
+  redis:
+    container_name: sangam_redis
+    image: redis:alpine
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    command: redis-server --requirepass sangam_password
+    networks:
+      - sangam_network
+
+volumes:
+  postgres_data:
+  mongodb_data:
+  redis_data:
+
+networks:
+  sangam_network:
+    driver: bridge
