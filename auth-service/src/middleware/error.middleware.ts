@@ -1,28 +1,30 @@
-import { Request, Response, NextFunction } from 'express';
-import { logger } from '../utils/logger';
+import { AppError } from "@/errors/appError";
+import { logger } from "@/utils/logger";
+import { NextFunction, Request, Response } from "express";
 
-interface AppError extends Error {
-  statusCode?: number;
-}
 
-export const errorHandler = (
-  err: AppError,
-  req: Request,
-  res: Response,
-  next: NextFunction
+export const ErrorMiddleware = (
+    err: Error,
+    req: Request,
+    res: Response,
+    next: NextFunction,
 ) => {
-  err.statusCode = err.statusCode || 500;
 
-  // Log the error
-  logger.error('Error:', {
-    message: err.message,
-    stack: err.stack,
-    statusCode: err.statusCode,
-  });
+    if (err instanceof AppError) {
+        return res.status(err.statusCode).json({
+            sucess: false,
+            message: err.message,
+            errorCode: err.errorCode,
+            details: err.details || null,
+            stack: process.env.NODE_ENV === "development" ? err.stack : undefined
+        })
+    }
+    logger.error("Unexpected error: ", err)
+    return res.status(500).json({
+        success: false,
+        message: "Internal Server Error",
+        errorCode: "INTERNAL_ERROR",
+        stack: process.env.NODE_ENV === "development" ? err.stack : undefined,
+    });
 
-  res.status(err.statusCode).json({
-    status: 'error',
-    message: err.message,
-    ...(process.env.NODE_ENV === 'development' && { stack: err.stack }),
-  });
-};
+}
