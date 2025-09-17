@@ -1,0 +1,1 @@
+CREATE DATABASE sangam_auth;
