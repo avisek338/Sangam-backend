@@ -1,4 +1,4 @@
-import { AppError } from "./appError";
+import { AppError } from "./appError.js";
 import { StatusCodes } from "http-status-codes";
 
 export class AuthorizationError extends AppError {

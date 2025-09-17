@@ -1,5 +1,5 @@
 import { StatusCodes } from "http-status-codes";
-import { AppError } from "./appError";
+import { AppError } from "./appError.js";
 
 
 export class UserAlreadyExistsError extends AppError {

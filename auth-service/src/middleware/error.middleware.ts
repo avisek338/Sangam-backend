@@ -1,5 +1,5 @@
-import { AppError } from "@/errors/appError";
-import { logger } from "@/utils/logger";
+import { AppError } from "@/errors/appError.js";
+import { logger } from "@/utils/logger.js";
 import { NextFunction, Request, Response } from "express";
 
 
