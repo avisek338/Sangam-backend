@@ -1,9 +1,7 @@
 import { StatusCodes } from "http-status-codes";
-import { AppError } from "./appError.js";
+import {AppError} from "../errors/appError";
 
-
-
-export class TokenInvalidError extends AppError {
+const TokenInvalidError = class extends AppError {
   constructor(message = "Invalid token", details?: Record<string, unknown>) {
     super({
       statusCode: StatusCodes.UNAUTHORIZED, // 401
@@ -14,3 +12,5 @@ export class TokenInvalidError extends AppError {
     });
   }
 }
+
+module.exports = { TokenInvalidError };

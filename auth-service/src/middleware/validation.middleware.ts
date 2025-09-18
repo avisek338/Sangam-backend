@@ -1,7 +1,7 @@
-import { Request, Response, NextFunction } from 'express';
-import { body, validationResult } from 'express-validator';
+import type { Request, Response, NextFunction } from 'express';
+const { body, validationResult } = require('express-validator');
 
-export const validateRegistration = [
+const validateRegistration = [
   body('email')
     .isEmail()
     .withMessage('Please enter a valid email'),
@@ -21,7 +21,7 @@ export const validateRegistration = [
   },
 ];
 
-export const validateLogin = [
+const validateLogin = [
   body('email')
     .isEmail()
     .withMessage('Please enter a valid email'),

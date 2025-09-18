@@ -1,9 +1,10 @@
-import winston from 'winston';
-import config from '../config/config.js';
+import type { AppConfig } from '../config/config';
+const winston = require('winston');
+const configuration = require('../config/config') as AppConfig;
 
-const logLevel = config.env === 'development' ? 'debug' : 'info';
+const logLevel = configuration.env === 'development' ? 'debug' : 'info';
 
-export const logger = winston.createLogger({
+const logger = winston.createLogger({
   level: logLevel,
   format: winston.format.combine(
     winston.format.timestamp(),
@@ -18,3 +19,5 @@ export const logger = winston.createLogger({
     })
   ]
 });
+
+module.exports = { logger };

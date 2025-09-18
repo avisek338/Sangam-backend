@@ -1,9 +1,22 @@
-export * from './appError.js';
-export * from './authenticationError.js';
-export * from './authorizationError.js';
-export * from './databaseError.js';
-export * from './tokenExpiredError.js';
-export * from './tokenInValidError.js';
-export * from './userAlreadyExistsError.js';
-export * from './userNotFoundError.js';
-export * from './validationError.js';
+// errors/index.js
+import AppError from './appError.js';
+import AuthenticationError from './authenticationError.js';
+import AuthorizationError from './authorizationError.js';
+import DatabaseError from './databaseError.js';
+import TokenExpiredError from './tokenExpiredError.js';
+import TokenInvalidError from './tokenInValidError.js';
+import UserAlreadyExistsError from './userAlreadyExistsError.js';
+import UserNotFoundError from './userNotFoundError.js';
+import ValidationError from './validationError.js';
+
+export {
+  AppError,
+  AuthenticationError,
+  AuthorizationError,
+  DatabaseError,
+  TokenExpiredError,
+  TokenInvalidError,
+  UserAlreadyExistsError,
+  UserNotFoundError,
+  ValidationError,
+};

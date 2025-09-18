@@ -1,8 +1,7 @@
 import { StatusCodes } from "http-status-codes";
-import { AppError } from "./appError.js";
+import {AppError} from "../errors/appError";
 
-
-export class UserAlreadyExistsError extends AppError {
+const UserAlreadyExistsError = class extends AppError {
   constructor(message = "User already exists", details?: Record<string, unknown>) {
     super({
       statusCode: StatusCodes.CONFLICT, // 409
@@ -13,3 +12,5 @@ export class UserAlreadyExistsError extends AppError {
     });
   }
 }
+
+module.exports = { UserAlreadyExistsError };

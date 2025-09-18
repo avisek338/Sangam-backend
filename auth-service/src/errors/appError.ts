@@ -7,8 +7,9 @@ export interface IAppError {
     details?: Record<string, unknown>;
 }
 
+export type AppErrorType = Error & IAppError;
 
-export class AppError extends Error implements IAppError {
+export const AppError = class extends Error implements IAppError {
     public readonly statusCode: number;
     public readonly errorCode?: string;
     public readonly details?: Record<string, unknown>;
@@ -26,5 +27,4 @@ export class AppError extends Error implements IAppError {
         Error.captureStackTrace(this, this.constructor);
         Object.setPrototypeOf(this, AppError.prototype);
     }
-
-};
+}

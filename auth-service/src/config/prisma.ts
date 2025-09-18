@@ -1,16 +1,19 @@
-import { PrismaClient } from '@prisma/client';
+import { PrismaClient } from "@prisma/client/extension";
 
 class PrismaSingleton {
-    private static instance: PrismaClient;
+    private static instance: InstanceType<typeof PrismaClient>;
     private constructor() { }
 
-    public static getInstance(): PrismaClient {
+    public static getInstance(): InstanceType<typeof PrismaClient> {
         if (!PrismaSingleton.instance) {
-            PrismaSingleton.instance = new PrismaClient();
+            PrismaSingleton.instance = new PrismaClient({
+                log: ['error', 'warn'],
+                errorFormat: 'pretty'
+            });
         }
         return PrismaSingleton.instance;
     }
-
 }
 
-export default PrismaSingleton.getInstance();
+export const prismaInstance = PrismaSingleton.getInstance();
+

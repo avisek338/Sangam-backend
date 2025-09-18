@@ -1,7 +1,8 @@
-import { AppError } from "./appError.js";
-import { StatusCodes } from "http-status-codes";
 
-export class ValidationError extends AppError {
+import { StatusCodes } from "http-status-codes";
+import {AppError} from "../errors/appError";
+
+const ValidationError = class extends AppError {
     constructor(message: string = "Validation error", details?: Record<string, unknown>) {
         super({
             statusCode: StatusCodes.BAD_REQUEST,
@@ -12,3 +13,5 @@ export class ValidationError extends AppError {
         });
     }
 }
+
+module.exports = { ValidationError };

@@ -1,11 +1,15 @@
-import express from 'express';  
-import db from './config/prisma.js'
+import express from "express";
+import { Prisma } from "@prisma/client";
+import {AuthorizationError} from "./errors/authorizationError"
+import { ErrorMiddleware } from "./middleware/error.middleware";
 const app = express();
 
-
 app.get('/', (req, res) => {
-  res.send('wellcome to Sangam!');
+  throw new AuthorizationError("testing");
+  res.send('welcome to Sangam!');
 });
+
+app.use(ErrorMiddleware);
 
 
 app.listen(3000, () => {

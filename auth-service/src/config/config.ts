@@ -1,9 +1,22 @@
-import dotenv from 'dotenv';
+const dotenv = require('dotenv');
 
 // Load environment variables
 dotenv.config();
 
-const config = {
+export interface AppConfig {
+  env: string;
+  port: number;
+  mongoUri: string;
+  jwtSecret: string;
+  jwtExpiresIn: string;
+  corsOrigin: string;
+  rateLimit: {
+    windowMs: number;
+    max: number;
+  };
+}
+
+const appConfig = {
   env: process.env.NODE_ENV || 'development',
   port: process.env.PORT || 3000,
   mongoUri: process.env.MONGODB_URI || 'mongodb://localhost:27017/auth-service',
@@ -14,6 +27,6 @@ const config = {
     windowMs: Number(process.env.RATE_LIMIT_WINDOW || 15) * 60 * 1000, // 15 minutes
     max: Number(process.env.RATE_LIMIT_MAX || 100) // limit each IP to 100 requests per windowMs
   }
-};
+} as const;
 
-export default config;
+module.exports = appConfig;
