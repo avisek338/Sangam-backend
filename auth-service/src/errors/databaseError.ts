@@ -1,6 +1,5 @@
-import { AppError } from "./appError";
 import { StatusCodes } from "http-status-codes";
-
+import {AppError} from "../errors/appError";
 
 export class DatabaseError extends AppError {
 
@@ -14,3 +13,4 @@ export class DatabaseError extends AppError {
         })
     }
 }
+

@@ -1,7 +1,7 @@
-import { AppError } from "./appError";
 import { StatusCodes } from "http-status-codes";
+import {AppError} from "../errors/appError";
 
-export class AuthorizationError extends AppError {
+export const AuthorizationError = class extends AppError {
   constructor(message = "Not authorized", details?: Record<string, unknown>) {
     super({
       statusCode: StatusCodes.FORBIDDEN, // 403
@@ -12,3 +12,5 @@ export class AuthorizationError extends AppError {
     });
   }
 }
+
+

@@ -3,11 +3,10 @@
   "version": "1.0.0",
   "description": "",
   "main": "dist/app.js",
-  "type": "module",
   "scripts": {
     "build": "tsc",
     "start": "node dist/app.js",
-    "dev": "set NODE_OPTIONS=--loader ts-node/esm&& nodemon src/app.ts",
+    "dev": "nodemon",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",

@@ -1,7 +1,7 @@
-import { AppError } from "./appError.js";
 import { StatusCodes } from "http-status-codes";
+import {AppError} from "../errors/appError";
 
-export class AuthError extends AppError {
+const AuthError = class extends AppError {
     constructor(
         message: string = "Authentication failed",
         details?: Record<string, unknown>

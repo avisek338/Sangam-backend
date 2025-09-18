@@ -1,9 +1,8 @@
+
 import { StatusCodes } from "http-status-codes";
-import { AppError } from "./appError";
+import {AppError} from "../errors/appError";
 
-
-
-export class UserNotFoundError extends AppError {
+const UserNotFoundError = class extends AppError {
   constructor(message = "User not found", details?: Record<string, unknown>) {
     super({
       statusCode: StatusCodes.NOT_FOUND, // 404
@@ -14,3 +13,5 @@ export class UserNotFoundError extends AppError {
     });
   }
 }
+
+module.exports = { UserNotFoundError };
