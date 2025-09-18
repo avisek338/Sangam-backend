@@ -1,7 +1,7 @@
 import { StatusCodes } from "http-status-codes";
 import {AppError} from "../errors/appError";
 
-const TokenExpiredError = class extends AppError {
+export class TokenExpiredError  extends AppError {
   constructor(message = "Token has expired", details?: Record<string, unknown>) {
     super({
       statusCode: StatusCodes.UNAUTHORIZED, // 401

@@ -1,7 +1,7 @@
 import { StatusCodes } from "http-status-codes";
 import {AppError} from "../errors/appError";
 
-const AuthError = class extends AppError {
+export class AuthenticationError  extends AppError {
     constructor(
         message: string = "Authentication failed",
         details?: Record<string, unknown>

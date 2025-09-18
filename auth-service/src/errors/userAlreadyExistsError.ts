@@ -1,7 +1,7 @@
 import { StatusCodes } from "http-status-codes";
 import {AppError} from "../errors/appError";
 
-const UserAlreadyExistsError = class extends AppError {
+export class UserAlreadyExistsError  extends AppError {
   constructor(message = "User already exists", details?: Record<string, unknown>) {
     super({
       statusCode: StatusCodes.CONFLICT, // 409

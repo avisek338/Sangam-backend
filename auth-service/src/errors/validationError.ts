@@ -2,7 +2,7 @@
 import { StatusCodes } from "http-status-codes";
 import {AppError} from "../errors/appError";
 
-const ValidationError = class extends AppError {
+export class ValidationError  extends AppError {
     constructor(message: string = "Validation error", details?: Record<string, unknown>) {
         super({
             statusCode: StatusCodes.BAD_REQUEST,
@@ -14,4 +14,4 @@ const ValidationError = class extends AppError {
     }
 }
 
-module.exports = { ValidationError };
+

@@ -1,7 +1,7 @@
 import { StatusCodes } from "http-status-codes";
 import {AppError} from "../errors/appError";
 
-const TokenInvalidError = class extends AppError {
+export class  TokenInvalidError  extends AppError {
   constructor(message = "Invalid token", details?: Record<string, unknown>) {
     super({
       statusCode: StatusCodes.UNAUTHORIZED, // 401
